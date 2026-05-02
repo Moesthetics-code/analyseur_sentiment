@@ -1,0 +1,17 @@
+# render.yaml
+services:
+  - type: web
+    name: sentimentai
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn "app:create_app()" --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --log-level info
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true          # Render génère automatiquement une valeur sécurisée
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9
+    healthCheckPath: /
+    autoDeploy: true

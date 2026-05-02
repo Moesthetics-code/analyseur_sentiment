@@ -1,0 +1,61 @@
+<!-- ====== SIDEBAR PARTIAL ====== -->
+
+<!-- Stats card -->
+<div class="card-panel">
+  <h3 class="font-display font-semibold text-sm text-slate-300 mb-4 flex items-center gap-2">
+    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+    </svg>
+    Statistiques
+  </h3>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="stat-card">
+      <div class="stat-value" id="stat-total">0</div>
+      <div class="stat-label">Analyses</div>
+    </div>
+    <div class="stat-card stat-card--pos">
+      <div class="stat-value text-emerald-400" id="stat-pos">0</div>
+      <div class="stat-label">Positifs</div>
+    </div>
+    <div class="stat-card stat-card--neu">
+      <div class="stat-value text-cyan-400" id="stat-neu">0</div>
+      <div class="stat-label">Neutres</div>
+    </div>
+    <div class="stat-card stat-card--neg">
+      <div class="stat-value text-rose-400" id="stat-neg">0</div>
+      <div class="stat-label">Négatifs</div>
+    </div>
+  </div>
+</div>
+
+<!-- History card -->
+<div class="card-panel">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="font-display font-semibold text-sm text-slate-300 flex items-center gap-2">
+      <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      Historique
+    </h3>
+    <div class="flex gap-2">
+      <a href="/api/export-csv"
+        class="p-1.5 rounded-md text-slate-500 hover:text-cyan-400 hover:bg-navy-800 transition-all"
+        title="Exporter CSV">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+      </a>
+      <button id="clear-history-btn"
+        class="p-1.5 rounded-md text-slate-500 hover:text-rose-400 hover:bg-navy-800 transition-all"
+        title="Effacer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="history-list" class="space-y-2 max-h-96 overflow-y-auto scrollbar-thin">
+    <p class="text-xs text-slate-600 font-mono text-center py-4">Aucune analyse pour le moment</p>
+  </div>
+</div>

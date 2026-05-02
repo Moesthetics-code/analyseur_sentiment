@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="{{ ui_lang }}" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ t.title }}</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#020817',
+              900: '#0f172a',
+              800: '#1e293b',
+              700: '#2a3a52',
+              600: '#334a68',
+            },
+            cyan: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+            },
+            emerald: { 400: '#34d399', 500: '#10b981' },
+            rose: { 400: '#fb7185', 500: '#f43f5e' },
+            amber: { 400: '#fbbf24', 500: '#f59e0b' },
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            mono: ['"DM Mono"', 'monospace'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.5s ease both',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+            'shimmer': 'shimmer 2s linear infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body class="bg-navy-950 text-slate-100 font-body min-h-screen antialiased">
+
+  <!-- Noise overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 border-b border-navy-800/60 backdrop-blur-xl bg-navy-950/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center text-navy-950 font-display font-bold text-sm group-hover:scale-110 transition-transform">
+          S
+        </span>
+        <span class="font-display font-bold text-lg tracking-tight hidden sm:block">
+          <span class="text-white">Sentiment</span><span class="text-cyan-400">AI</span>
+        </span>
+      </a>
+
+      <!-- UI Language switcher -->
+      <div class="flex items-center gap-2">
+        {% for code, label in [('fr','FR'), ('en','EN')] %}
+        <a href="{{ url_for('main.set_ui_lang', lang=code) }}"
+           class="px-3 py-1.5 text-xs font-mono font-medium rounded-md transition-all
+                  {% if ui_lang == code %}bg-cyan-500/20 text-cyan-400 border border-cyan-500/30{% else %}text-slate-400 hover:text-slate-200 hover:bg-navy-800{% endif %}">
+          {{ label }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-navy-800/60 mt-20 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-slate-500 text-sm font-mono">
+        Développé par
+        <a href="https://github.com/Moesthetics-code/sentiment-analyzer" target="_blank"
+           class="text-cyan-400 hover:text-cyan-300 transition-colors">Mohamed Ndiaye</a>
+        · Flask · NLTK · Tailwind CSS
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

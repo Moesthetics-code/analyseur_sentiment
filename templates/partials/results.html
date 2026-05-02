@@ -1,0 +1,86 @@
+<!-- ====== RESULTS PARTIAL ====== -->
+<div class="card-panel">
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="font-display font-bold text-lg text-white">Résultats</h2>
+    <span id="result-model-badge"
+      class="text-xs font-mono px-2 py-1 rounded-md bg-navy-800 border border-navy-700 text-slate-400"></span>
+  </div>
+
+  <!-- Sentiment badge -->
+  <div id="sentiment-badge" class="sentiment-badge mb-6">
+    <span id="sentiment-emoji" class="text-3xl"></span>
+    <span id="sentiment-label" class="font-display font-extrabold text-2xl tracking-tight"></span>
+  </div>
+
+  <!-- Score gauge row -->
+  <div class="grid grid-cols-3 gap-3 mb-6">
+    <div class="score-card score-pos">
+      <div class="score-value" id="score-pos">0.00</div>
+      <div class="score-label">Positif</div>
+    </div>
+    <div class="score-card score-neu">
+      <div class="score-value" id="score-neu">0.00</div>
+      <div class="score-label">Neutre</div>
+    </div>
+    <div class="score-card score-neg">
+      <div class="score-value" id="score-neg">0.00</div>
+      <div class="score-label">Négatif</div>
+    </div>
+  </div>
+
+  <!-- Compound gauge -->
+  <div class="mb-6">
+    <div class="flex justify-between text-xs font-mono text-slate-500 mb-1.5">
+      <span>Négatif −1</span>
+      <span>Score composé: <span id="score-compound" class="text-cyan-400 font-medium">—</span></span>
+      <span>+1 Positif</span>
+    </div>
+    <div class="compound-gauge">
+      <div class="compound-gauge__fill">
+        <div id="compound-needle" class="compound-needle"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donut chart -->
+  <div class="mb-6 flex justify-center">
+    <div class="relative w-48 h-48">
+      <canvas id="donut-chart"></canvas>
+      <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <span id="donut-center-val" class="font-display font-bold text-xl text-white"></span>
+        <span class="text-xs text-slate-400 font-mono">compound</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sentence analysis (VADER only) -->
+  <div id="sentence-analysis" class="hidden space-y-3 mb-5">
+    <h3 class="text-sm font-mono text-slate-400 uppercase tracking-wider">Analyse phrastique</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="sentence-card sentence-pos">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-emerald-400 text-sm">😊</span>
+          <span class="text-xs font-mono text-emerald-400">Plus positive</span>
+        </div>
+        <p id="most-pos-text" class="text-xs text-slate-300 leading-relaxed italic"></p>
+        <div class="mt-2 font-mono text-xs text-emerald-400 font-medium" id="most-pos-score"></div>
+      </div>
+      <div class="sentence-card sentence-neg">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-rose-400 text-sm">😞</span>
+          <span class="text-xs font-mono text-rose-400">Plus négative</span>
+        </div>
+        <p id="most-neg-text" class="text-xs text-slate-300 leading-relaxed italic"></p>
+        <div class="mt-2 font-mono text-xs text-rose-400 font-medium" id="most-neg-score"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Word cloud -->
+  <div id="wordcloud-section" class="hidden">
+    <h3 class="text-sm font-mono text-slate-400 uppercase tracking-wider mb-3">Nuage de mots</h3>
+    <div class="rounded-xl overflow-hidden border border-navy-700">
+      <img id="wordcloud-img" src="" alt="Word Cloud" class="w-full h-auto" />
+    </div>
+  </div>
+</div>
